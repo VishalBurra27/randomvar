@@ -1,20 +1,33 @@
-\let\negmedspace\undefined
-\let\negthickspace\undefined
-%\RequirePackage{amsmath}
 \documentclass[journal,12pt,twocolumn]{IEEEtran}
-%
-% \usepackage{setspace}
- \usepackage{gensymb}
-  \usepackage[misc]{ifsym}
+\usepackage{setspace}
+\usepackage{gensymb}
+\usepackage{caption}
+%\usepackage{multirow}
+%\usepackage{multicolumn}
+%\usepackage{subcaption}
 %\doublespacing
- \usepackage{polynom}
-%\singlespacing
-%\usepackage{silence}
-%Disable all warnings issued by latex starting with "You have..."
-%\usepackage{graphicx}
+\singlespacing
+\usepackage{csvsimple}
+\usepackage{amsmath}
+\usepackage{multicol}
+%\usepackage{enumerate}
 \usepackage{amssymb}
+%\usepackage{graphicx}
+\usepackage{newfloat}
+%\usepackage{syntax}
+\usepackage{listings}
+% \usepackage{iithtlc}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
+
+
+%\usepackage{graphicx}
+%\usepackage{amssymb}
 %\usepackage{relsize}
-\usepackage[cmex10]{amsmath}
+%\usepackage[cmex10]{amsmath}
+%\usepackage{mathtools}
 %\usepackage{amsthm}
 %\interdisplaylinepenalty=2500
 %\savesymbol{iint}
@@ -22,32 +35,27 @@
 %\restoresymbol{TXF}{iint}
 %\usepackage{wasysym}
 \usepackage{amsthm}
-%\usepackage{pifont}
-%\usepackage{iithtlc}
-% \usepackage{mathrsfs}
-% \usepackage{txfonts}
- \usepackage{stfloats}
-% \usepackage{steinmetz}
- \usepackage{bm}
-% \usepackage{cite}
-% \usepackage{cases}
-% \usepackage{subfig}
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{stfloats}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{mathtools}
+\usepackage{caption}
+\usepackage{enumerate}	
+\usepackage{enumitem}
+\usepackage{amsmath}
 %\usepackage{xtab}
 \usepackage{longtable}
-%\usepackage{multirow}
+\usepackage{multirow}
 %\usepackage{algorithm}
 %\usepackage{algpseudocode}
 \usepackage{enumitem}
- \usepackage{mathtools}
- \usepackage{tikz}
-% \usepackage{circuitikz}
-% \usepackage{verbatim}
-%\usepackage{tfrupee}
-\usepackage[breaklinks=true]{hyperref}
-%\usepackage{stmaryrd}
-%\usepackage{tkz-euclide} % loads  TikZ and tkz-base
-%\usetkzobj{all}
+\usepackage{mathtools}
+\usepackage{hyperref}
+%\usepackage[framemethod=tikz]{mdframed}
 \usepackage{listings}
+    %\usepackage[latin1]{inputenc}                                 %%
     \usepackage{color}                                            %%
     \usepackage{array}                                            %%
     \usepackage{longtable}                                        %%
@@ -57,50 +65,88 @@
     \usepackage{ifthen}                                           %%
   %optionally (for landscape tables embedded in another document): %%
     \usepackage{lscape}     
-% \usepackage{multicol}
-% \usepackage{chngcntr}
-%\usepackage{enumerate}
-\usepackage{tfrupee}
+
+
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+
+
+%\usepackage{stmaryrd}
+
 
 %\usepackage{wasysym}
 %\newcounter{MYtempeqncnt}
 \DeclareMathOperator*{\Res}{Res}
-\DeclareMathOperator*{\equals}{=}
+%\renewcommand{\baselinestretch}{2}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
 
+\renewcommand\thesectiondis{\arabic{section}}
+\renewcommand\thesubsectiondis{\thesectiondis.\arabic{subsection}}
+\renewcommand\thesubsubsectiondis{\thesubsectiondis.\arabic{subsubsection}}
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
-\def\inputGnumericTable{}                                 %%
 
+%\lstset{
+%language=C,
+%frame=single, 
+%breaklines=true
+%}
+
+%\lstset{
+	%%basicstyle=\small\ttfamily\bfseries,
+	%%numberstyle=\small\ttfamily,
+	%language=Octave,
+	%backgroundcolor=\color{white},
+	%%frame=single,
+	%%keywordstyle=\bfseries,
+	%%breaklines=true,
+	%%showstringspaces=false,
+	%%xleftmargin=-10mm,
+	%%aboveskip=-1mm,
+	%%belowskip=0mm
+%}
+
+%\surroundwithmdframed[width=\columnwidth]{lstlisting}
+\def\inputGnumericTable{}                                 %%
 \lstset{
 %language=C,
 frame=single, 
 breaklines=true,
 columns=fullflexible
 }
-%\lstset{
-%language=tex,
-%frame=single, 
-%breaklines=true
-%}
+ 
+
 \begin{document}
-
 %
+\tikzstyle{block} = [rectangle, draw,
+    text width=3em, text centered, minimum height=3em]
+\tikzstyle{sum} = [draw, circle, node distance=3cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
 
-
+\theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{problem}{Problem}
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{example}{Example}[section]
-\newtheorem{definition}[problem]{Definition}
+\newtheorem{definition}{Definition}[section]
+%\newtheorem{algorithm}{Algorithm}[section]
+%\newtheorem{cor}{Corollary}
 \newcommand{\BEQA}{\begin{eqnarray}}
 \newcommand{\EEQA}{\end{eqnarray}}
 \newcommand{\define}{\stackrel{\triangle}{=}}
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
 \bibliographystyle{IEEEtran}
+%\bibliographystyle{ieeetr}
+
+\providecommand{\nCr}[2]{\,^{#1}C_{#2}} % nCr
+\providecommand{\nPr}[2]{\,^{#1}P_{#2}} % nPr
 \providecommand{\mbf}{\mathbf}
 \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
 \providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
@@ -116,47 +162,134 @@ columns=fullflexible
 \theoremstyle{remark}
 \newtheorem{rem}{Remark}
 \newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+% \providecommand{\abs}[1]{\left\vert#1\right\vert}
+\providecommand{\res}[1]{\Res\displaylimits_{#1}} 
+% \providecommand{\norm}[1]{\left\Vert#1\right\Vert}
+\providecommand{\mtx}[1]{\mathbf{#1}}
+% \providecommand{\mean}[1]{E\left[ #1 \right]}
 \providecommand{\fourier}{\overset{\mathcal{F}}{ \rightleftharpoons}}
 %\providecommand{\hilbert}{\overset{\mathcal{H}}{ \rightleftharpoons}}
 \providecommand{\system}{\overset{\mathcal{H}}{ \longleftrightarrow}}
 	%\newcommand{\solution}[2]{\textbf{Solution:}{#1}}
 \newcommand{\solution}{\noindent \textbf{Solution: }}
-\newcommand{\cosec}{\,\text{cosec}\,}
-\providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
 \newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
-\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+\providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 %\numberwithin{equation}{section}
-%\numberwithin{figure}{section}
-%\numberwithin{table}{section}
-%\numberwithin{equation}{subsection}
-%\numberwithin{problem}{section}
-%\numberwithin{definition}{section}
+%\numberwithin{problem}{subsection}
+%\numberwithin{definition}{subsection}
 \makeatletter
-\@addtoreset{figure}{problem}
+\@addtoreset{figure}{section}
 \makeatother
+
 \let\StandardTheFigure\thefigure
-\let\vec\mathbf
 %\renewcommand{\thefigure}{\theproblem.\arabic{figure}}
-\renewcommand{\thefigure}{\theproblem}
-%\setlist[enumerate,1]{before=\renewcommand\theequation{\theenumi.\arabic{equation}}
-%\counterwithin{equation}{enumi}
-%\renewcommand{\theequation}{\arabic{subsection}.\arabic{equation}}
-\def\putbox#1#2#3{\makebox[0in][l]{\makebox[#1][l]{}\raisebox{\baselineskip}[0in][0in]{\raisebox{#2}[0in][0in]{#3}}}}
-     \def\rightbox#1{\makebox[0in][r]{#1}}
-     \def\centbox#1{\makebox[0in]{#1}}
-     \def\topbox#1{\raisebox{-\baselineskip}[0in][0in]{#1}}
-     \def\midbox#1{\raisebox{-0.5\baselineskip}[0in][0in]{#1}}
-\title{
-	%\logo{
-%Computational Approach to School Geometry
-	Assignment
-%	}
+\renewcommand{\thefigure}{\thesection}
+
+
+%\numberwithin{figure}{subsection}
+
+%\numberwithin{equation}{subsection}
+%\numberwithin{equation}{section}
+%\numberwithin{equation}{problem}
+%\numberwithin{problem}{subsection}
+\numberwithin{problem}{section}
+%%\numberwithin{definition}{subsection}
+%\makeatletter
+%\@addtoreset{figure}{problem}
+%\makeatother
+\makeatletter
+\@addtoreset{table}{section}
+\makeatother
+
+\let\StandardTheFigure\thefigure
+\let\StandardTheTable\thetable
+\let\vec\mathbf
+\numberwithin{equation}{section}
+
+\vspace{3cm}
+
+
+\title{%Convex Optimization in Python
+	\logo{
+	Random Numbers
+	}
 }
-\author{ Burra Vishal Mathews\\CS21BTECH11010% <-this % stops a space
+%\title{
+%	\logo{Matrix Analysis through Octave}{\begin{center}\includegraphics[scale=.24]{tlc}\end{center}}{}{HAMDSP}
+%}
+
+
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+%\title{Matrix Analysis through Octave}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+\author{ G V V Sharma$^{*}$% <-this % stops a space
+\thanks{* The author is with the Department
+of Electrical Engineering, Indian Institute of Technology, Hyderabad
+502285 India e-mail:  gadepall@iith.ac.in.}% <-this % stops a space
+%\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops a space
+%\thanks{Manuscript received April 19, 2005; revised January 11, 2007.}}
 }
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~6, No.~1, January~2007}%
+%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2007 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+
+
+% make the title area
 \maketitle
+
 \tableofcontents
+
 \bigskip
+
 \renewcommand{\thefigure}{\theenumi}
 \renewcommand{\thetable}{\theenumi}
 
@@ -172,8 +305,8 @@ Let $U$ be a uniform random variable between 0 and 1.
 \\
 \solution Download the following files and execute the  C program.
 \begin{lstlisting}
-wget https://github.com/VishalBurra27/randomvar/blob/main/URN/code/q1.1.c
-wget https://github.com/VishalBurra27/randomvar/blob/main/URN/code/coeffs.h
+wget https://github.com/VishalBurra27/randomvar/blob/main/1-URN/code/q1.1.c
+wget https://github.com/VishalBurra27/randomvar/blob/main/1-URN/code/coeffs.h
 \end{lstlisting}
 Download the above files and execute the following commands
 \begin{lstlisting}
@@ -188,7 +321,7 @@ F_{U}(x) = \pr{U \le x}
 \\
 \solution  The following code plots Fig. \ref{fig:1.2}
 \begin{lstlisting}
-wget https://github.com/VishalBurra27/randomvar/blob/main/URN/code/q1.2.py
+wget https://github.com/VishalBurra27/randomvar/blob/main/1-URN/code/q1.2.py
 \end{lstlisting}
 Download the above files and execute the following commands to produce Fig.\ref{fig:1.2}
 \begin{lstlisting}
@@ -229,8 +362,8 @@ and its variance as
 Write a C program to  find the mean and variance of $U$. \\
 \solution Download the following files and execute the  C program.
 \begin{lstlisting}
-wget https://github.com/VishalBurra27/randomvar/blob/main/URN/code/q1.4.c
-wget https://github.com/VishalBurra27/randomvar/blob/main/CLT/code/coeffs.h
+wget https://github.com/VishalBurra27/randomvar/blob/main/1-URN/code/q1.4.c
+wget https://github.com/VishalBurra27/randomvar/blob/main/2-CLT/code/coeffs.h
 \end{lstlisting}
 Download the above files and execute the following commands
 \begin{lstlisting}
@@ -270,8 +403,8 @@ X = \sum_{i=1}^{12}U_i -6
 using a C program, where $U_i, i = 1,2,\dots, 12$ are  a set of independent uniform random variables between 0 and 1 and save in a file called gau.dat\\
 \solution Download the following files and execute the  C program.
 \begin{lstlisting}
-wget https://github.com/VishalBurra27/randomvar/blob/main/CLT/code/q2.1.c
-wget https://github.com/VishalBurra27/randomvar/blob/main/CLT/code/coeffs.h
+wget https://github.com/VishalBurra27/randomvar/blob/main/2-CLT/code/q2.1.c
+wget https://github.com/VishalBurra27/randomvar/blob/main/2-CLT/code/coeffs.h
 \end{lstlisting}
 Download the above files and execute the following commands
 \begin{lstlisting}
@@ -283,7 +416,7 @@ Load gau.dat in python and plot the empirical CDF of $X$ using the samples in ga
 \solution The CDF of $X$ is plotted in Fig. \ref{fig:2.2}\\
 using the code below
 \begin{lstlisting}
-wget https://github.com/VishalBurra27/randomvar/blob/main/CLT/code/q2.2.py
+wget https://github.com/VishalBurra27/randomvar/blob/main/2-CLT/code/q2.2.py
 \end{lstlisting}
 Download the above files and execute the following commands to produce Fig.\ref{fig:2.2}
 \begin{lstlisting}
@@ -310,7 +443,7 @@ What properties does the PDF have?
 \\
 \solution The PDF of $X$ is plotted in Fig. \ref{fig:2.3} using the code below
 \begin{lstlisting}
-wget https://github.com/VishalBurra27/randomvar/blob/main/CLT/code/q2.3.py
+wget https://github.com/VishalBurra27/randomvar/blob/main/2-CLT/code/q2.3.py
 \end{lstlisting}
 Download the above files and execute the following commands to produce Fig.\ref{fig:2.3}
 \begin{lstlisting}
@@ -331,8 +464,8 @@ Some of the properties of the PDF:
 \item Find the mean and variance of $X$ by writing a C program.\\
 \solution Download the following files and execute the  C program.
 \begin{lstlisting}
-wget https://github.com/VishalBurra27/randomvar/blob/main/CLT/code/q2.4.c
-wget https://github.com/VishalBurra27/randomvar/blob/main/CLT/code/coeffs.h
+wget https://github.com/VishalBurra27/randomvar/blob/main/2-CLT/code/q2.4.c
+wget https://github.com/VishalBurra27/randomvar/blob/main/2-CLT/code/coeffs.h
 \end{lstlisting}
 Download the above files and execute the following commands
 \begin{lstlisting}
@@ -349,19 +482,26 @@ repeat the above exercise theoretically.
 \begin{enumerate}
     \item CDF is given by 
     \begin{align}
-        F_X(x)&=\int_{-\infty}^{\infty}p_X(x)dx\\
-        \boxed{F_X(x)=1}
-    \end{align}
+        & \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}} dx & \\
+        & = \frac{1}{\sqrt{2\pi}} \times \sqrt{2\pi} & \\
+        & = 1 
+\end{align}
     \item Mean is given by
     \begin{align}
-        E(x)=\int_{-\infty}^{\infty}xp_X(x)dx\\
-        \implies \boxed{E(x)=0}
-    \end{align}
+        & \int_{-\infty}^{\infty} x \times \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}} dx& \\ 
+        & = 0 &+
+\end{align}
     \item Variance is given by
     \begin{align}
-        \text{var}\sbrak{U}=E(U^2)-(E(U))^2\\
-        \implies\boxed{\text{var}\sbrak{U}=\sqrt{2}}
-    \end{align}
+		&	E\sbrak{X} = \int_{-\infty}^{\infty}x\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{x^2}{2}\right)} = 0 & \\
+		& E\sbrak{X^2} \int_{-\infty}^{\infty} x \times x \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}} dx & \\
+		& Var\brak{U}= x \times 
+        \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}}\Biggr|_{-\infty}^{\infty}\\
+        &+\int_{-\infty}^{\infty}1 \times \int  \frac{x}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}} & \\
+        & = x \times 0 + \int_{-\infty}^{\infty}1 \times \int  \frac{x}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}} &\\
+		&  = \int_{-\infty}^{\infty} \exp\brak{-\frac{x^2}{2}} & \\
+		& Var(X)= \sqrt{2} &
+		\end{align}
 \end{enumerate}
 \section{From Uniform to Other}
 \begin{enumerate}[label=\thesection.\arabic*
@@ -377,8 +517,8 @@ V = -2\ln\brak{1-U}
 and plot its CDF.  \\
 \solution Download the following files and execute the  C program.
 \begin{lstlisting}
-wget https://github.com/VishalBurra27/randomvar/blob/main/FUO/code/q3.1.c
-wget https://github.com/VishalBurra27/randomvar/blob/main/FUO/code/coeffs.h
+wget https://github.com/VishalBurra27/randomvar/blob/main/3-FUO/code/q3.1.c
+wget https://github.com/VishalBurra27/randomvar/blob/main/3-FUO/code/coeffs.h
 \end{lstlisting}
 Download the above files and execute the following commands
 \begin{lstlisting}
@@ -387,7 +527,7 @@ $ ./a.out
 \end{lstlisting}
 The CDF of $V$ is plotted in Fig. \ref{fig:3.1} using the code below
 \begin{lstlisting}
-wget https://github.com/VishalBurra27/randomvar/blob/main/FUO/code/q3.1.py
+wget https://github.com/VishalBurra27/randomvar/blob/main/3-FUO/code/q3.1.py
 \end{lstlisting}
 Download the above files and execute the following commands to produce Fig.\ref{fig:3.1}
 \begin{lstlisting}

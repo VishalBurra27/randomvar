@@ -7,7 +7,7 @@ simlen = int(1e6) #number of samples
 err = [] #declaring probability list
 
 
-randvar = np.loadtxt('../gau.dat',dtype='double')
+randvar = np.loadtxt('gau.dat',dtype='double')
 for i in range(0,30):
     err_ind = np.nonzero(randvar < x[i]) #checking probability condition
     err_n = np.size(err_ind) #computing the probability

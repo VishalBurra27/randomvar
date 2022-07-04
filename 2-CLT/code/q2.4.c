@@ -4,8 +4,8 @@
 #include <math.h>
 
 int main(){
-printf("%lf\n",mean("gau.dat"));
-printf("%lf\n",variance("gau.dat"));
+printf("%lf\n",mean("../gau.dat"));
+printf("%lf\n",variance("../gau.dat"));
 return 0;
 }
 
