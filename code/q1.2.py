@@ -31,4 +31,6 @@ plt.grid() #creating the grid
 plt.xlabel('$x$')
 plt.ylabel('$F_X(x)$')
 plt.legend(["Numerical","Theory"])
-plt.show()
+plt.savefig('../figs/q1.2.png')
+
+

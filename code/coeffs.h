@@ -12,6 +12,7 @@ double **transpose(double **a,  int m, int n);
 void uniform(char *str, int len);
 void gaussian(char *str, int len);
 double mean(char *str);
+double variance(char *str);
 //End function declaration
 
 
@@ -264,6 +265,30 @@ vartemp=vartemp/(i-1) - temp*temp;
 return vartemp;
 }
 //End function for calculating the mean of random numbers
+void uniformsum(char *td,int len)
+{
+int i;
+double x,y;
+FILE *fp1,*fp2,*unisum;
+//get two uniform distributions 
+uniform("uni1.dat",len);
+uniform("uni2.dat",len);
+//open the two files
+fp1= fopen("uni1.dat","r");
+fp2=fopen("uni2.dat","r");
+unisum=fopen(td,"w");
+//Generate numbers
+while(fscanf(fp1,"%lf",&x)!=EOF)
+{
+fscanf(fp2,"%lf",&y);
+fprintf(unisum,"%lf\n",(double)(x+y));
+}
+fclose(fp1);
+fclose(fp2);
+fclose(unisum);
+remove("uni1.dat");
+remove("uni2.dat");
+}
 
 //Defining the function for generating Gaussian random numbers
 void gaussian(char *str, int len)

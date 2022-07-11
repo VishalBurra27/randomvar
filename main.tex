@@ -89,27 +89,7 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-%\lstset{
-%language=C,
-%frame=single, 
-%breaklines=true
-%}
 
-%\lstset{
-	%%basicstyle=\small\ttfamily\bfseries,
-	%%numberstyle=\small\ttfamily,
-	%language=Octave,
-	%backgroundcolor=\color{white},
-	%%frame=single,
-	%%keywordstyle=\bfseries,
-	%%breaklines=true,
-	%%showstringspaces=false,
-	%%xleftmargin=-10mm,
-	%%aboveskip=-1mm,
-	%%belowskip=0mm
-%}
-
-%\surroundwithmdframed[width=\columnwidth]{lstlisting}
 \def\inputGnumericTable{}                                 %%
 \lstset{
 %language=C,
@@ -141,10 +121,8 @@ columns=fullflexible
 \newcommand{\BEQA}{\begin{eqnarray}}
 \newcommand{\EEQA}{\end{eqnarray}}
 \newcommand{\define}{\stackrel{\triangle}{=}}
-
 \bibliographystyle{IEEEtran}
 %\bibliographystyle{ieeetr}
-
 \providecommand{\nCr}[2]{\,^{#1}C_{#2}} % nCr
 \providecommand{\nPr}[2]{\,^{#1}P_{#2}} % nPr
 \providecommand{\mbf}{\mathbf}
@@ -181,14 +159,10 @@ columns=fullflexible
 \makeatletter
 \@addtoreset{figure}{section}
 \makeatother
-
 \let\StandardTheFigure\thefigure
 %\renewcommand{\thefigure}{\theproblem.\arabic{figure}}
 \renewcommand{\thefigure}{\thesection}
-
-
 %\numberwithin{figure}{subsection}
-
 %\numberwithin{equation}{subsection}
 %\numberwithin{equation}{section}
 %\numberwithin{equation}{problem}
@@ -201,25 +175,19 @@ columns=fullflexible
 \makeatletter
 \@addtoreset{table}{section}
 \makeatother
-
 \let\StandardTheFigure\thefigure
 \let\StandardTheTable\thetable
 \let\vec\mathbf
 \numberwithin{equation}{section}
-
 \vspace{3cm}
-
-
-\title{%Convex Optimization in Python
-	\logo{
+\title{
+	
 	Assignment
-	}
+	
 }
 %\title{
 %	\logo{Matrix Analysis through Octave}{\begin{center}\includegraphics[scale=.24]{tlc}\end{center}}{}{HAMDSP}
 %}
-
-
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
 %\title{Matrix Analysis through Octave}
@@ -233,13 +201,8 @@ columns=fullflexible
 % a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
 % was not built to handle multiple paragraphs
 %
-
 \author{ Burra Vishal Mathews\\CS21BTECH11010$^{*}$% <-this % stops a space
 }
-
-
-
-
 % The paper headers
 %\markboth{Journal of \LaTeX\ Class Files,~Vol.~6, No.~1, January~2007}%
 %{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Journals}
@@ -250,28 +213,17 @@ columns=fullflexible
 % *** name in the headers of peer review papers.                   ***
 % You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
 % you desire.
-
-
-
-
 % If you want to put a publisher's ID mark on the page you can do it like
 % this:
 %\IEEEpubid{0000--0000/00\$00.00~\copyright~2007 IEEE}
 % Remember, if you use this you must call \IEEEpubidadjcol in the second
 % column for its text to clear the IEEEpubid mark.
-
-
-
 % make the title area
 \maketitle
-
 \tableofcontents
-
 \bigskip
-
 \renewcommand{\thefigure}{\theenumi}
 \renewcommand{\thetable}{\theenumi}
-
 \begin{abstract}
 This manual provides solutions to the Assignment of Random Numbers
 \end{abstract}
@@ -317,15 +269,14 @@ $ python3 q1.2.py
 Find a  theoretical expression for $F_{U}(x)$.\\
 \solution Given $U$ is a uniform Random Variable
 \begin{align}
-p_{U}(x)=1 \text{ for } \\
-F_U(x)=\int_{-\infty}^{\infty}p_{U}(x)dx\\
-\boxed{\implies F_U(x)=
-\begin{cases}
- 0 &x\le0\\
- x &0< x< 1\\
- 1 &x\ge 1
-\end{cases}}
-\end{align}
+			F_U(x) = 
+			\begin{cases}
+				0 & x < 0 \\
+				x & 0 \leq x < 1 \\
+				1 & x \geq 1
+			\end{cases}
+			\label{unicdf}
+		\end{align}
 \item
 The mean of $U$ is defined as
 %
@@ -538,4 +489,112 @@ F_V(x) &= F_U(1 - e^{\frac{-x}{2}})
 %\item
 %Generate the Rayleigh distribution from Uniform. Verify your result through graphical plots.
 \end{enumerate}
+
+\section{Triangular Distribution}
+\begin{enumerate}[label=\thesection.\arabic*
+,ref=\thesection.\theenumi]
+\item Generate
+	\begin{align}
+		T = U_1 + U_2
+	\end{align}
+\solution
+The c code for generating T is at :
+\begin{lstlisting}
+
+wget https://github.com/VishalBurra27/randomvar/blob/main/code/q4.1.c
+
+\end{lstlisting}
+
+And then execute the code :
+\begin{lstlisting}
+gcc q4.1.c -lm
+./a.out
+\end{lstlisting}
+This generates a file named "td.dat"
+\item Find the CDF of $T$.
+
+\solution
+The Python code for the plot is :
+\begin{lstlisting}
+$ wget https://github.com/VishalBurra27/randomvar/blob/main/code/q4.2.py
+\end{lstlisting}
+and can be run using
+\begin{lstlisting}
+$ python3 q4.2.py
+\end{lstlisting}
+\begin{figure}[!htb]
+	\includegraphics[width=\columnwidth]{./figs/q4.2.png}
+	\caption{The CDF of $T$}
+	\label{fig:tri-cdf}
+\end{figure}
+\item Find the PDF of $T$.
+	\begin{figure}
+		\includegraphics[width=\columnwidth]{./figs/q4.3.png}
+		\caption{The PDF of $T$}
+		\label{fig:tri-pdf}
+	\end{figure}
+	
+\solution
+The Python code for the figure is available at : 
+\begin{lstlisting}
+$ wget https://github.com/VishalBurra27/randomvar/blob/main/code/q4.3.py
+\end{lstlisting}
+and run using
+\begin{lstlisting}
+$ python3 q4.3.py
+\end{lstlisting}
+\item Find the theoretical PDF and CDF of $T$.
+
+\solution
+We write,
+		\begin{align}
+			F_T(t) &= \pr{U_1 + U_2 \leq t} \\
+			&= \pr{U_1 \leq t - U_2} \\
+			&= \int_{0}^{1}F_{U_1}(t - x)p_{U_2}(x)dx
+		\end{align}
+		where $U_1$ and $U_2$ are uniform i.i.d. random variables in [0, 1]. Then, $0 \leq U_1 + U_2 \leq 2$.
+We have three cases:
+		\begin{enumerate}
+			\item $t < 0$: Using equation \eqref{unicdf} $F_T(t) = 0$.
+			\item $0 \leq t < 1$: We have,
+				\begin{align}
+					F_T(t) = \int_{0}^{t}(t - x)dx = \frac{t^2}{2}
+				\end{align}
+			\item $1 \leq t < 2$: Here, we get
+				\begin{align}
+					F_T(t) &= \int_{0}^{t - 1}dx + \int_{t - 1}^{1}(t - x)dx \\
+					&= t - 1 + t(2 - t) - \frac{1 - (t - 1)^2}{2} \\
+					&= -\frac{t^2}{2} + 2t - 1
+				\end{align}
+			\item $t \geq 2$: Here, $F_T(t) = 1$.
+		\end{enumerate}
+Therefore,
+		\begin{align}
+			F_T(t) = 
+			\begin{cases} 
+				0 & t < 0 \\
+				\frac{t^2}{2} &  0 \leq t < 1 \\
+				-\frac{t^2}{2} + 2t - 1 & 1 \leq t < 2 \\
+				1 & t \geq 2
+			\end{cases}
+			\label{eq:cdf-tri}
+		\end{align}
+Using \begin{align}
+p_{X}(x) = \frac{d}{dx}F_{X}(x)
+\end{align}, 
+		\begin{align}
+			p_T(t) = 
+			\begin{cases}
+				t & 0 \leq t < 1 \\
+				2 - t & 1 \leq t < 2 \\
+				0 & \text{otherwise}
+			\end{cases}
+			\label{eq:pdf-tri}
+		\end{align}
+\item Verify your results through a plot.
+
+\solution
+This has been done in the plots \eqref{fig:tri-cdf} and \eqref{fig:tri-pdf}.
+\end{enumerate}
+
 \end{document}

@@ -36,5 +36,4 @@ plt.grid()
 plt.xlabel('$x_i$')
 plt.ylabel('$p_X(x_i)$')
 plt.legend(["Numerical","Theory"])
-plt.show()
-
+plt.savefig('../figs/q2.3.png')

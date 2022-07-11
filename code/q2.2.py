@@ -27,5 +27,5 @@ plt.grid()
 plt.xlabel('$x$')
 plt.legend(["Theory","Numercial"])
 plt.ylabel('$F_X(x)$')
-plt.show()
+plt.savefig('../figs/q2.2.png')
 
